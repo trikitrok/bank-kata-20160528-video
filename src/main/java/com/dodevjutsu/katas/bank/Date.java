@@ -28,4 +28,16 @@ public class Date {
     public int hashCode() {
         return date != null ? date.hashCode() : 0;
     }
+
+    public String day() {
+        return date.substring(0, 2);
+    }
+
+    public String month() {
+        return date.substring(3, 5);
+    }
+
+    public String year() {
+        return date.substring(6, 10);
+    }
 }
