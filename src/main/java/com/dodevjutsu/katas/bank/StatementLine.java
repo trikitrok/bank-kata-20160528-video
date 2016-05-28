@@ -11,6 +11,10 @@ public class StatementLine {
         this.balance = balance;
     }
 
+    public boolean isDebit() {
+        return amount < 0;
+    }
+
     @Override
     public String toString() {
         return "StatementLine{" +

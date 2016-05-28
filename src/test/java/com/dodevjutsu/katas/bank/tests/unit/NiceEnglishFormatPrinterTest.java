@@ -49,4 +49,20 @@ public class NiceEnglishFormatPrinterTest {
 
         context.assertIsSatisfied();
     }
+
+    @Test
+    public void prints_a_statement_containing_a_credit_line() {
+        context.checking(new Expectations() {{
+            oneOf(console).print("date || credit || debit || balance");
+            oneOf(console).print("13/01/2012 || 2000.00 || || 3000.00");
+        }});
+
+        printer.printStatement(
+            aStatementContaining(
+                new StatementLine(new Date("13-01-2012"), 2000, 3000)
+            )
+        );
+
+        context.assertIsSatisfied();
+    }
 }
