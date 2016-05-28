@@ -19,12 +19,12 @@ public class InMemoryTransactions implements Transactions {
 
     @Override
     public Statement statement() {
-        if (transactions.isEmpty())
-            return new Statement(new ArrayList<>());
-        return new Statement(
-            Arrays.asList(
-                new StatementLine(new Date("10-05-2016"), 500, 500),
-                new StatementLine(new Date("10-05-2016"), -200, 300))
-        );
+        int accumulatedBalance = 0;
+        List<StatementLine> statementLines = new ArrayList<>();
+        for(Transaction transaction : transactions) {
+            statementLines.add(transaction.generateStatementLine(accumulatedBalance));
+            accumulatedBalance += transaction.amount();
+        }
+        return new Statement(statementLines);
     }
 }
