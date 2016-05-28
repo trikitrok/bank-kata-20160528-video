@@ -3,7 +3,6 @@ package com.dodevjutsu.katas.bank;
 import java.util.List;
 
 public class NiceEnglishFormatPrinter implements Printer {
-    private static final String STATEMENT_HEADER = "date || credit || debit || balance";
     private final Console console;
 
     public NiceEnglishFormatPrinter(Console console) {
@@ -16,41 +15,45 @@ public class NiceEnglishFormatPrinter implements Printer {
         printLines(statement.linesInReverseOrder());
     }
 
+    private void printHeader() {
+        console.print(NiceEnglishFormat.STATEMENT_HEADER);
+    }
+
     private void printLines(List<StatementLine> reversed) {
         reversed.stream()
-            .map(this::format)
+            .map(statementLine -> NiceEnglishFormat.format(statementLine))
             .forEach(line -> console.print(line));
     }
 
-    private String format(StatementLine statementLine) {
-        return String.format(
-            lineFormat(statementLine),
-            formatDateOf(statementLine),
-            formatAmountOf(statementLine),
-            formatBalanceOf(statementLine)
-        );
-    }
+    private static class NiceEnglishFormat {
+        static final String STATEMENT_HEADER = "date || credit || debit || balance";
 
-    private String lineFormat(StatementLine statementLine) {
-        if (statementLine.isDebit()) {
-            return "%s || || %s || %s";
+        public static String format(StatementLine statementLine) {
+            return String.format(
+                lineFormat(statementLine),
+                formatDateOf(statementLine),
+                formatAmountOf(statementLine),
+                formatBalanceOf(statementLine)
+            );
         }
-        return "%s || %s || || %s";
-    }
 
-    private String formatBalanceOf(StatementLine statementLine) {
-        return String.format("%d.00", statementLine.balance());
-    }
+        private static String lineFormat(StatementLine statementLine) {
+            if (statementLine.isDebit()) {
+                return "%s || || %s || %s";
+            }
+            return "%s || %s || || %s";
+        }
 
-    private String formatAmountOf(StatementLine statementLine) {
-        return String.format("%d.00", Math.abs(statementLine.amount()));
-    }
+        private static String formatBalanceOf(StatementLine statementLine) {
+            return String.format("%d.00", statementLine.balance());
+        }
 
-    private String formatDateOf(StatementLine statementLine) {
-        return String.format("%s/%s/%s", statementLine.day(), statementLine.month(), statementLine.year());
-    }
+        private static String formatAmountOf(StatementLine statementLine) {
+            return String.format("%d.00", Math.abs(statementLine.amount()));
+        }
 
-    private void printHeader() {
-        console.print(STATEMENT_HEADER);
+        private static String formatDateOf(StatementLine statementLine) {
+            return String.format("%s/%s/%s", statementLine.day(), statementLine.month(), statementLine.year());
+        }
     }
 }
