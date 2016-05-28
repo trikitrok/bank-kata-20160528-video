@@ -2,6 +2,7 @@ package com.dodevjutsu.katas.bank.tests.unit;
 
 import com.dodevjutsu.katas.bank.Account;
 import com.dodevjutsu.katas.bank.Printer;
+import com.dodevjutsu.katas.bank.Statement;
 import com.dodevjutsu.katas.bank.Transactions;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
@@ -41,6 +42,19 @@ public class AccountTest {
         }});
 
         account.withdraw(500);
+
+        context.assertIsSatisfied();
+    }
+
+    @Test
+    public void a_statement_of_account_transactions_gets_created_for_printing() {
+        context.checking(new Expectations() {{
+            ignoring(printer);
+            oneOf(transactions).statement();
+            will(returnValue(with(any(Statement.class))));
+        }});
+
+        account.printStatement();
 
         context.assertIsSatisfied();
     }
