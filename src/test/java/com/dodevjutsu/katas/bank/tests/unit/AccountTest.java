@@ -33,4 +33,15 @@ public class AccountTest {
 
         context.assertIsSatisfied();
     }
+
+    @Test
+    public void withdraws_an_amount() {
+        context.checking(new Expectations() {{
+            oneOf(transactions).record(-500);
+        }});
+
+        account.withdraw(500);
+
+        context.assertIsSatisfied();
+    }
 }

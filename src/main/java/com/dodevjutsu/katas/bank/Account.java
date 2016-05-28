@@ -20,7 +20,7 @@ public class Account {
     }
 
     public void withdraw(int amount) {
-
+        transactions.record(-amount);
     }
 
     public void printStatement() {
