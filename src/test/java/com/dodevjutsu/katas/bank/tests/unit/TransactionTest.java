@@ -1,10 +1,11 @@
 package com.dodevjutsu.katas.bank.tests.unit;
 
 import com.dodevjutsu.katas.bank.Date;
-import com.dodevjutsu.katas.bank.StatementLine;
 import com.dodevjutsu.katas.bank.Transaction;
+import com.dodevjutsu.katas.bank.tests.helpers.StatementLineBuilder;
 import org.junit.Test;
 
+import static com.dodevjutsu.katas.bank.tests.helpers.StatementLineBuilder.aStatementLine;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -19,7 +20,10 @@ public class TransactionTest {
 
         assertThat(
             transaction.generateStatementLine(accumulatedBalance),
-            is(new StatementLine(transactionDate, transactionAmount, 2500))
+            is(aStatementLine().from(transactionDate)
+                .ofAmount(transactionAmount)
+                .andBalance(2500).build()
+            )
         );
     }
 }

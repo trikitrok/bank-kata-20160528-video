@@ -1,6 +1,7 @@
 package com.dodevjutsu.katas.bank.tests.unit;
 
 import com.dodevjutsu.katas.bank.*;
+import com.dodevjutsu.katas.bank.tests.helpers.StatementLineBuilder;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Before;
@@ -8,6 +9,7 @@ import org.junit.Test;
 
 import static com.dodevjutsu.katas.bank.tests.helpers.StatementFactory.aStatementContaining;
 import static com.dodevjutsu.katas.bank.tests.helpers.StatementFactory.anEmptyStatement;
+import static com.dodevjutsu.katas.bank.tests.helpers.StatementLineBuilder.aStatementLine;
 
 public class NiceEnglishFormatPrinterTest {
 
@@ -42,7 +44,7 @@ public class NiceEnglishFormatPrinterTest {
 
         printer.printStatement(
             aStatementContaining(
-                new StatementLine(new Date("14-01-2012"), -600, 1000)
+                aStatementLine().from("14-01-2012").ofAmount(-600).andBalance(1000)
             )
         );
 
@@ -59,8 +61,8 @@ public class NiceEnglishFormatPrinterTest {
 
         printer.printStatement(
             aStatementContaining(
-                new StatementLine(new Date("13-01-2012"), 2000, 3000),
-                new StatementLine(new Date("14-01-2012"), -500, 2500)
+                aStatementLine().from("13-01-2012").ofAmount(2000).andBalance(3000),
+                aStatementLine().from("14-01-2012").ofAmount(-500).andBalance(2500)
             )
         );
 
@@ -76,7 +78,7 @@ public class NiceEnglishFormatPrinterTest {
 
         printer.printStatement(
             aStatementContaining(
-                new StatementLine(new Date("13-01-2012"), 2000, 3000)
+                aStatementLine().from("13-01-2012").ofAmount(2000).andBalance(3000)
             )
         );
 

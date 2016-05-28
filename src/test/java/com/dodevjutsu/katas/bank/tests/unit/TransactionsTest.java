@@ -1,6 +1,7 @@
 package com.dodevjutsu.katas.bank.tests.unit;
 
 import com.dodevjutsu.katas.bank.*;
+import com.dodevjutsu.katas.bank.tests.helpers.StatementLineBuilder;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Before;
@@ -8,6 +9,7 @@ import org.junit.Test;
 
 import static com.dodevjutsu.katas.bank.tests.helpers.StatementFactory.aStatementContaining;
 import static com.dodevjutsu.katas.bank.tests.helpers.StatementFactory.anEmptyStatement;
+import static com.dodevjutsu.katas.bank.tests.helpers.StatementLineBuilder.aStatementLine;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -36,8 +38,8 @@ abstract public class TransactionsTest {
         final Date secondTransactionDate = new Date("15-05-2016");
         int secondTransactionAmount = -200;
         Statement expectedStatement = aStatementContaining(
-            new StatementLine(firstTransactionDate, firstTransactionAmount, 500),
-            new StatementLine(secondTransactionDate, secondTransactionAmount, 300)
+            aStatementLine().from(firstTransactionDate).ofAmount(firstTransactionAmount).andBalance(500),
+            aStatementLine().from(secondTransactionDate).ofAmount(secondTransactionAmount).andBalance(300)
         );
         context.checking(new Expectations() {{
             exactly(2).of(calendar).day();
