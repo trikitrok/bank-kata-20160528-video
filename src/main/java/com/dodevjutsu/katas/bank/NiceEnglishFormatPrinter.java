@@ -1,7 +1,5 @@
 package com.dodevjutsu.katas.bank;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class NiceEnglishFormatPrinter implements Printer {
@@ -15,13 +13,13 @@ public class NiceEnglishFormatPrinter implements Printer {
     @Override
     public void printStatement(Statement statement) {
         printHeader();
-        List<StatementLine> reversed = new ArrayList<>(statement.lines());
-        Collections.reverse(reversed);
-        reversed.forEach(this::printLine);
+        printLines(statement.linesInReverseOrder());
     }
 
-    private void printLine(StatementLine statementLine) {
-        console.print(format(statementLine));
+    private void printLines(List<StatementLine> reversed) {
+        reversed.stream()
+            .map(this::format)
+            .forEach(line -> console.print(line));
     }
 
     private String format(StatementLine statementLine) {

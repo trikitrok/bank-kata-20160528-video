@@ -1,6 +1,7 @@
 package com.dodevjutsu.katas.bank;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Statement {
@@ -10,8 +11,10 @@ public class Statement {
         this.statementLines = statementLines;
     }
 
-    public List<StatementLine> lines() {
-        return new ArrayList<>(statementLines);
+    public List<StatementLine> linesInReverseOrder() {
+        List<StatementLine> reversed = new ArrayList<>(statementLines);
+        Collections.reverse(reversed);
+        return reversed;
     }
 
     @Override
