@@ -1,5 +1,9 @@
 package com.dodevjutsu.katas.bank;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class NiceEnglishFormatPrinter implements Printer {
     private static final String STATEMENT_HEADER = "date || credit || debit || balance";
     private final Console console;
@@ -15,7 +19,9 @@ public class NiceEnglishFormatPrinter implements Printer {
             return;
         }
 
-        printLine(statement.lines().get(0));
+        List<StatementLine> reversed = new ArrayList<>(statement.lines());
+        Collections.reverse(reversed);
+        reversed.forEach(this::printLine);
     }
 
     private void printLine(StatementLine statementLine) {

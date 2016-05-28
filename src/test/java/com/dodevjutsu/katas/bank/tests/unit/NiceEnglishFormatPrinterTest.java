@@ -54,6 +54,24 @@ public class NiceEnglishFormatPrinterTest {
     public void prints_a_statement_containing_a_credit_line() {
         context.checking(new Expectations() {{
             oneOf(console).print("date || credit || debit || balance");
+            oneOf(console).print("14/01/2012 || || 500.00 || 2500.00");
+            oneOf(console).print("13/01/2012 || 2000.00 || || 3000.00");
+        }});
+
+        printer.printStatement(
+            aStatementContaining(
+                new StatementLine(new Date("13-01-2012"), 2000, 3000),
+                new StatementLine(new Date("14-01-2012"), -500, 2500)
+            )
+        );
+
+        context.assertIsSatisfied();
+    }
+
+    @Test
+    public void prints_a_statement_containing_a_debit_and_a_credit_line_in_reverse_order() {
+        context.checking(new Expectations() {{
+            oneOf(console).print("date || credit || debit || balance");
             oneOf(console).print("13/01/2012 || 2000.00 || || 3000.00");
         }});
 
