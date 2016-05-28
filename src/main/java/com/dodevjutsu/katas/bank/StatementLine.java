@@ -55,4 +55,8 @@ public class StatementLine {
     public String year() {
         return date.year();
     }
+
+    public int amount() {
+        return amount;
+    }
 }
