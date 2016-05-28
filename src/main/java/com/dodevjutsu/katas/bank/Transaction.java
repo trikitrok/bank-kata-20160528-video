@@ -9,6 +9,14 @@ public class Transaction {
         this.amount = amount;
     }
 
+    public StatementLine generateStatementLine(int accumulatedBalance) {
+        return new StatementLine(date, amount, amount + accumulatedBalance);
+    }
+
+    public int amount() {
+        return amount;
+    }
+
     @Override
     public String toString() {
         return "Transaction{" +
@@ -33,13 +41,5 @@ public class Transaction {
         int result = date != null ? date.hashCode() : 0;
         result = 31 * result + amount;
         return result;
-    }
-
-    public StatementLine generateStatementLine(int accumulatedBalance) {
-        return new StatementLine(date, amount, amount + accumulatedBalance);
-    }
-
-    public int amount() {
-        return amount;
     }
 }

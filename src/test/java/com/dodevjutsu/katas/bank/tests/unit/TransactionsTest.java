@@ -1,7 +1,9 @@
 package com.dodevjutsu.katas.bank.tests.unit;
 
-import com.dodevjutsu.katas.bank.*;
-import com.dodevjutsu.katas.bank.tests.helpers.StatementLineBuilder;
+import com.dodevjutsu.katas.bank.Calendar;
+import com.dodevjutsu.katas.bank.Date;
+import com.dodevjutsu.katas.bank.Statement;
+import com.dodevjutsu.katas.bank.Transactions;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Before;

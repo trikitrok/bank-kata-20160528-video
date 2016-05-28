@@ -1,7 +1,6 @@
 package com.dodevjutsu.katas.bank;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class InMemoryTransactions implements Transactions {

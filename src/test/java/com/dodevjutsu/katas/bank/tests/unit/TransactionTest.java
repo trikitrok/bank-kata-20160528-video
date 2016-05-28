@@ -2,7 +2,6 @@ package com.dodevjutsu.katas.bank.tests.unit;
 
 import com.dodevjutsu.katas.bank.Date;
 import com.dodevjutsu.katas.bank.Transaction;
-import com.dodevjutsu.katas.bank.tests.helpers.StatementLineBuilder;
 import org.junit.Test;
 
 import static com.dodevjutsu.katas.bank.tests.helpers.StatementLineBuilder.aStatementLine;

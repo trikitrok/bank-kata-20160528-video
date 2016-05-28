@@ -15,6 +15,26 @@ public class StatementLine {
         return amount < 0;
     }
 
+    public String day() {
+        return date.day();
+    }
+
+    public String month() {
+        return date.month();
+    }
+
+    public String year() {
+        return date.year();
+    }
+
+    public int amount() {
+        return amount;
+    }
+
+    public int balance() {
+        return balance;
+    }
+
     @Override
     public String toString() {
         return "StatementLine{" +
@@ -42,25 +62,5 @@ public class StatementLine {
         result = 31 * result + amount;
         result = 31 * result + balance;
         return result;
-    }
-
-    public String day() {
-        return date.day();
-    }
-
-    public String month() {
-        return date.month();
-    }
-
-    public String year() {
-        return date.year();
-    }
-
-    public int amount() {
-        return amount;
-    }
-
-    public int balance() {
-        return balance;
     }
 }

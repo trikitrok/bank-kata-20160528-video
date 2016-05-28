@@ -22,7 +22,7 @@ public class DateTest {
     }
 
     @Test
-    public void moth() {
+    public void month() {
         assertThat(date.month(), is("05"));
     }
 

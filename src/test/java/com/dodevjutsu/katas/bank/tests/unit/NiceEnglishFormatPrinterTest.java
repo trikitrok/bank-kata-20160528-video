@@ -1,7 +1,8 @@
 package com.dodevjutsu.katas.bank.tests.unit;
 
-import com.dodevjutsu.katas.bank.*;
-import com.dodevjutsu.katas.bank.tests.helpers.StatementLineBuilder;
+import com.dodevjutsu.katas.bank.Console;
+import com.dodevjutsu.katas.bank.NiceEnglishFormatPrinter;
+import com.dodevjutsu.katas.bank.Printer;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Before;
