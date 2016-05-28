@@ -4,6 +4,7 @@ import com.dodevjutsu.katas.bank.Account;
 import com.dodevjutsu.katas.bank.Printer;
 import com.dodevjutsu.katas.bank.Statement;
 import com.dodevjutsu.katas.bank.Transactions;
+import com.dodevjutsu.katas.bank.tests.helpers.StatementFactory;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Before;
@@ -62,7 +63,7 @@ public class AccountTest {
 
     @Test
     public void the_generated_account_transactions_statement_gets_printed() {
-        Statement statement = new Statement();
+        Statement statement = StatementFactory.anyStatement();
         context.checking(new Expectations() {{
             oneOf(transactions).statement();
             will(returnValue(statement));

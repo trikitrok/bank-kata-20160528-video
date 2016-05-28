@@ -1,6 +1,7 @@
 package com.dodevjutsu.katas.bank.tests.unit;
 
 import com.dodevjutsu.katas.bank.*;
+import com.dodevjutsu.katas.bank.tests.helpers.StatementFactory;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Before;
@@ -9,6 +10,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static com.dodevjutsu.katas.bank.tests.helpers.StatementFactory.aStatementContaining;
+import static com.dodevjutsu.katas.bank.tests.helpers.StatementFactory.anEmptyStatement;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -50,14 +53,6 @@ abstract public class TransactionsTest {
         assertThat(transactions.statement(), is(expectedStatement));
 
         context.assertIsSatisfied();
-    }
-
-    private Statement aStatementContaining(StatementLine ... statementLines) {
-        return new Statement(Arrays.asList(statementLines));
-    }
-
-    private Statement anEmptyStatement() {
-        return new Statement(new ArrayList<>());
     }
 
     protected abstract Transactions getImplementationUsing(Calendar calendar);
