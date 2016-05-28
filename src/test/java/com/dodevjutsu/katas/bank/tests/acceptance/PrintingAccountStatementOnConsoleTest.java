@@ -1,9 +1,6 @@
 package com.dodevjutsu.katas.bank.tests.acceptance;
 
-import com.dodevjutsu.katas.bank.Account;
-import com.dodevjutsu.katas.bank.Calendar;
-import com.dodevjutsu.katas.bank.Console;
-import com.dodevjutsu.katas.bank.Date;
+import com.dodevjutsu.katas.bank.*;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Test;
@@ -14,7 +11,10 @@ public class PrintingAccountStatementOnConsoleTest {
         Mockery context = new Mockery();
         Calendar calendar = context.mock(Calendar.class);
         Console console = context.mock(Console.class);
-        Account account = new Account(calendar, console);
+        Account account = new Account(
+            new InMemoryTransactions(calendar),
+            new NiceEnglishFormatPrinter(console)
+        );
         context.checking(new Expectations() {{
             exactly(3).of(calendar).day();
             will(onConsecutiveCalls(

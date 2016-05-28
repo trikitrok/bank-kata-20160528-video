@@ -1,14 +1,8 @@
 package com.dodevjutsu.katas.bank;
 
-import com.dodevjutsu.katas.bank.Calendar;
-import com.dodevjutsu.katas.bank.Console;
-
 public class Account {
     private Transactions transactions;
     private Printer printer;
-
-    public Account(Calendar calendar, Console console) {
-    }
 
     public Account(Transactions transactions, Printer printer) {
         this.transactions = transactions;
