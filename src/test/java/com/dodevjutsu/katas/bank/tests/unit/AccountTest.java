@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class AccountTest {
-
     private static final int ANY_AMOUNT = 500;
     private Mockery context;
     private Transactions transactions;

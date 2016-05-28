@@ -1,7 +1,6 @@
 package com.dodevjutsu.katas.bank.tests.unit;
 
 import com.dodevjutsu.katas.bank.*;
-import com.dodevjutsu.katas.bank.tests.helpers.StatementFactory;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Before;
