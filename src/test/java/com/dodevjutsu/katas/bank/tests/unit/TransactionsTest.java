@@ -1,14 +1,10 @@
 package com.dodevjutsu.katas.bank.tests.unit;
 
 import com.dodevjutsu.katas.bank.*;
-import com.dodevjutsu.katas.bank.tests.helpers.StatementFactory;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import static com.dodevjutsu.katas.bank.tests.helpers.StatementFactory.aStatementContaining;
 import static com.dodevjutsu.katas.bank.tests.helpers.StatementFactory.anEmptyStatement;
@@ -35,20 +31,24 @@ abstract public class TransactionsTest {
 
     @Test
     public void generates_an_account_statement_containing_all_recorded_transactions() {
+        final Date firstTransactionDate = new Date("10-05-2016");
+        int firstTransactionAmount = 500;
+        final Date secondTransactionDate = new Date("15-05-2016");
+        int secondTransactionAmount = -200;
         Statement expectedStatement = aStatementContaining(
-            new StatementLine(new Date("10-05-2016"), 500, 500),
-            new StatementLine(new Date("10-05-2016"), -200, 300)
+            new StatementLine(firstTransactionDate, firstTransactionAmount, 500),
+            new StatementLine(secondTransactionDate, secondTransactionAmount, 300)
         );
         context.checking(new Expectations() {{
             exactly(2).of(calendar).day();
             will(onConsecutiveCalls(
-                returnValue(new Date("10-05-2016")),
-                returnValue(new Date("10-05-2016"))
+                returnValue(firstTransactionDate),
+                returnValue(secondTransactionDate)
             ));
         }});
 
-        transactions.record(500);
-        transactions.record(-200);
+        transactions.record(firstTransactionAmount);
+        transactions.record(secondTransactionAmount);
 
         assertThat(transactions.statement(), is(expectedStatement));
 
