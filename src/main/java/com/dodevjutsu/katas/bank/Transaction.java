@@ -1,34 +1,30 @@
 package com.dodevjutsu.katas.bank;
 
-public class StatementLine {
+public class Transaction {
     private final Date date;
     private final int amount;
-    private final int balance;
 
-    public StatementLine(Date date, int amount, int balance) {
+    public Transaction(Date date, int amount) {
         this.date = date;
         this.amount = amount;
-        this.balance = balance;
     }
 
     @Override
     public String toString() {
-        return "StatementLine{" +
+        return "Transaction{" +
             "date=" + date +
             ", amount=" + amount +
-            ", balance=" + balance +
             '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof StatementLine)) return false;
+        if (!(o instanceof Transaction)) return false;
 
-        StatementLine that = (StatementLine) o;
+        Transaction that = (Transaction) o;
 
         if (amount != that.amount) return false;
-        if (balance != that.balance) return false;
         return date != null ? date.equals(that.date) : that.date == null;
     }
 
@@ -36,7 +32,6 @@ public class StatementLine {
     public int hashCode() {
         int result = date != null ? date.hashCode() : 0;
         result = 31 * result + amount;
-        result = 31 * result + balance;
         return result;
     }
 }
