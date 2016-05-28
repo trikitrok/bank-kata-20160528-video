@@ -24,10 +24,18 @@ public class NiceEnglishFormatPrinter implements Printer {
 
     private String formattedLine(StatementLine statementLine) {
         if (statementLine.isDebit()) {
-            return dateOf(statementLine) + " || || " + amountOf(statementLine) + " || 1000.00";
+            return dateOf(statementLine) + " || || " +
+                amountOf(statementLine) + " || " +
+                balanceOf(statementLine);
         } else {
-            return dateOf(statementLine) + " || " + amountOf(statementLine) + " || || 3000.00";
+            return dateOf(statementLine) + " || " +
+                amountOf(statementLine) + " || || " +
+                balanceOf(statementLine);
         }
+    }
+
+    private String balanceOf(StatementLine statementLine) {
+        return String.format("%d.00", Math.abs(statementLine.balance()));
     }
 
     private String amountOf(StatementLine statementLine) {
