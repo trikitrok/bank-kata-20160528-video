@@ -1,6 +1,7 @@
 package com.dodevjutsu.katas.bank;
 
 public class NiceEnglishFormatPrinter implements Printer {
+    private static final String STATEMENT_HEADER = "date || credit || debit || balance";
     private final Console console;
 
     public NiceEnglishFormatPrinter(Console console) {
@@ -9,6 +10,10 @@ public class NiceEnglishFormatPrinter implements Printer {
 
     @Override
     public void printStatement(Statement statement) {
-        console.print("date || credit || debit || balance");
+        printHeader();
+    }
+
+    private void printHeader() {
+        console.print(STATEMENT_HEADER);
     }
 }
