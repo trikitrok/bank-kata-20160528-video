@@ -1,5 +1,6 @@
 package com.dodevjutsu.katas.bank;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Statement {
@@ -7,6 +8,10 @@ public class Statement {
 
     public Statement(List<StatementLine> statementLines) {
         this.statementLines = statementLines;
+    }
+
+    public List<StatementLine> lines() {
+        return new ArrayList<>(statementLines);
     }
 
     @Override

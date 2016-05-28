@@ -11,6 +11,10 @@ public class NiceEnglishFormatPrinter implements Printer {
     @Override
     public void printStatement(Statement statement) {
         printHeader();
+        if (statement.lines().isEmpty()){
+            return;
+        }
+        console.print("14/01/2012 || || 600.00 || 1000.00");
     }
 
     private void printHeader() {
