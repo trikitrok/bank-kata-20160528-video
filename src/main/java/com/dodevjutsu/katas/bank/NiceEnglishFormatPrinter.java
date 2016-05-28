@@ -11,17 +11,23 @@ public class NiceEnglishFormatPrinter implements Printer {
     @Override
     public void printStatement(Statement statement) {
         printHeader();
-        if (statement.lines().isEmpty()){
+        if (statement.lines().isEmpty()) {
             return;
         }
 
-        StatementLine statementLine = statement.lines().get(0);
-        if(statementLine.isDebit()) {
-            console.print("14/01/2012 || || 600.00 || 1000.00");
-        } else {
-            console.print("13/01/2012 || 2000.00 || || 3000.00");
-        }
+        printLine(statement.lines().get(0));
+    }
 
+    private void printLine(StatementLine statementLine) {
+        console.print(formattedLine(statementLine));
+    }
+
+    private String formattedLine(StatementLine statementLine) {
+        if (statementLine.isDebit()) {
+            return "14/01/2012 || || 600.00 || 1000.00";
+        } else {
+            return "13/01/2012 || 2000.00 || || 3000.00";
+        }
     }
 
     private void printHeader() {
