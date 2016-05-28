@@ -34,4 +34,8 @@ public class Transaction {
         result = 31 * result + amount;
         return result;
     }
+
+    public StatementLine generateStatementLine(int accumulatedBalance) {
+        return new StatementLine(date, amount, amount + accumulatedBalance);
+    }
 }
