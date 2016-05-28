@@ -11,6 +11,7 @@ import org.junit.Test;
 
 public class AccountTest {
 
+    private static final int ANY_AMOUNT = 500;
     private Mockery context;
     private Transactions transactions;
     private Printer printer;
@@ -27,10 +28,10 @@ public class AccountTest {
     @Test
     public void deposits_an_amount() {
         context.checking(new Expectations() {{
-            oneOf(transactions).record(500);
+            oneOf(transactions).record(ANY_AMOUNT);
         }});
 
-        account.deposit(500);
+        account.deposit(ANY_AMOUNT);
 
         context.assertIsSatisfied();
     }
@@ -38,10 +39,10 @@ public class AccountTest {
     @Test
     public void withdraws_an_amount() {
         context.checking(new Expectations() {{
-            oneOf(transactions).record(-500);
+            oneOf(transactions).record(-ANY_AMOUNT);
         }});
 
-        account.withdraw(500);
+        account.withdraw(ANY_AMOUNT);
 
         context.assertIsSatisfied();
     }
