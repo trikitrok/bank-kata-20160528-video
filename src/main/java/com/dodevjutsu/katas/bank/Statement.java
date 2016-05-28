@@ -1,14 +1,9 @@
 package com.dodevjutsu.katas.bank;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Statement {
     private final List<StatementLine> statementLines;
-
-    public Statement() {
-        this(new ArrayList<>());
-    }
 
     public Statement(List<StatementLine> statementLines) {
         this.statementLines = statementLines;
