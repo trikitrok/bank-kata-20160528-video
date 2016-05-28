@@ -58,4 +58,19 @@ public class AccountTest {
 
         context.assertIsSatisfied();
     }
+
+    @Test
+    public void the_generated_account_transactions_statement_gets_printed() {
+        Statement statement = new Statement();
+        context.checking(new Expectations() {{
+            oneOf(transactions).statement();
+            will(returnValue(statement));
+
+            oneOf(printer).printStatement(with(same(statement)));
+        }});
+
+        account.printStatement();
+
+        context.assertIsSatisfied();
+    }
 }
