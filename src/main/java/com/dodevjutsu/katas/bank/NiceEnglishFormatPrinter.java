@@ -24,10 +24,14 @@ public class NiceEnglishFormatPrinter implements Printer {
 
     private String formattedLine(StatementLine statementLine) {
         if (statementLine.isDebit()) {
-            return "14/01/2012 || || 600.00 || 1000.00";
+            return dateOf(statementLine) + " || || 600.00 || 1000.00";
         } else {
-            return "13/01/2012 || 2000.00 || || 3000.00";
+            return dateOf(statementLine) + " || 2000.00 || || 3000.00";
         }
+    }
+
+    private String dateOf(StatementLine statementLine) {
+        return String.format("%s/%s/%s", statementLine.day(), statementLine.month(), statementLine.year());
     }
 
     private void printHeader() {

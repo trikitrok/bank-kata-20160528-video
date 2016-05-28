@@ -43,4 +43,16 @@ public class StatementLine {
         result = 31 * result + balance;
         return result;
     }
+
+    public String day() {
+        return date.day();
+    }
+
+    public String month() {
+        return date.month();
+    }
+
+    public String year() {
+        return date.year();
+    }
 }
