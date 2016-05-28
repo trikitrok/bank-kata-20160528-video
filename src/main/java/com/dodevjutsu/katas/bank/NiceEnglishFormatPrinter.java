@@ -15,10 +15,6 @@ public class NiceEnglishFormatPrinter implements Printer {
     @Override
     public void printStatement(Statement statement) {
         printHeader();
-        if (statement.lines().isEmpty()) {
-            return;
-        }
-
         List<StatementLine> reversed = new ArrayList<>(statement.lines());
         Collections.reverse(reversed);
         reversed.forEach(this::printLine);
