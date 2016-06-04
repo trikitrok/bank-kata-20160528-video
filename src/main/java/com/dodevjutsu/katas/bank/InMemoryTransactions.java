@@ -21,8 +21,9 @@ public class InMemoryTransactions implements Transactions {
         int accumulatedBalance = 0;
         List<StatementLine> statementLines = new ArrayList<>();
         for(Transaction transaction : transactions) {
-            statementLines.add(transaction.generateStatementLine(accumulatedBalance));
-            accumulatedBalance += transaction.amount();
+            StatementLine statementLine = transaction.generateStatementLine(accumulatedBalance);
+            statementLines.add(statementLine);
+            accumulatedBalance = statementLine.balance();
         }
         return new Statement(statementLines);
     }

@@ -13,10 +13,6 @@ public class Transaction {
         return new StatementLine(date, amount, amount + accumulatedBalance);
     }
 
-    public int amount() {
-        return amount;
-    }
-
     @Override
     public String toString() {
         return "Transaction{" +
